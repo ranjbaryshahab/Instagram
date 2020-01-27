@@ -1,8 +1,6 @@
 package ir.maktab.java32.projects.instagram.app;
 
 import ir.maktab.java32.projects.instagram.features.accountmanagement.commands.*;
-import ir.maktab.java32.projects.instagram.features.accountmanagement.models.User;
-import ir.maktab.java32.projects.instagram.features.accountmanagement.services.impl.CreateAccountByUserUseCaseImpl;
 import ir.maktab.java32.projects.instagram.features.shared.service.AuthenticationService;
 import ir.maktab.java32.projects.instagram.utils.Display;
 
@@ -24,10 +22,15 @@ public class Application {
         Command unFollowCommand = new UnFollowCommand(accountManagement);
         Command loginCommand = new LoginCommand(accountManagement);
         Command logoutCommand = new LogoutCommand(accountManagement);
+        Command myFollowersCommand = new LogoutCommand(accountManagement);
+        Command myFollowingsCommand = new LogoutCommand(accountManagement);
+        Command myPostsCommand = new LogoutCommand(accountManagement);
 
         AccountManagementMenuOptions accountMenu = new AccountManagementMenuOptions(
-                createCommand, findByUsernameCommand, updateCommand, deleteCommand, followCommand, unFollowCommand, loginCommand, logoutCommand);
-        String command ;
+                createCommand, findByUsernameCommand, updateCommand, deleteCommand, followCommand, unFollowCommand, loginCommand, logoutCommand,
+                myFollowersCommand, myFollowingsCommand, myPostsCommand
+        );
+        String command;
 
         while (true) {
             if (AuthenticationService.getInstance().getLoginUser() == null) {

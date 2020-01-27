@@ -1,5 +1,8 @@
 package ir.maktab.java32.projects.instagram.features.accountmanagement.commands;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class AccountManagementMenuOptions {
     private Command createCommand;
     private Command findByIdCommand;
@@ -9,17 +12,10 @@ public class AccountManagementMenuOptions {
     private Command unFollowCommand;
     private Command loginCommand;
     private Command logoutCommand;
+    private Command myFollowers;
+    private Command myFollowings;
+    private Command myPosts;
 
-    public AccountManagementMenuOptions(Command createCommand, Command findByIdCommand, Command updateCommand, Command deleteCommand, Command followCommand, Command unFollowCommand, Command loginCommand, Command logoutCommand) {
-        this.createCommand = createCommand;
-        this.findByIdCommand = findByIdCommand;
-        this.updateCommand = updateCommand;
-        this.deleteCommand = deleteCommand;
-        this.followCommand = followCommand;
-        this.unFollowCommand = unFollowCommand;
-        this.loginCommand = loginCommand;
-        this.logoutCommand = logoutCommand;
-    }
 
     public void inputCreate() {
         createCommand.execute();
@@ -50,6 +46,18 @@ public class AccountManagementMenuOptions {
     }
 
     public void inputLogout() {
+        logoutCommand.execute();
+    }
+
+    public void inputMyFollowers() {
+        logoutCommand.execute();
+    }
+
+    public void inputMyFollowings() {
+        logoutCommand.execute();
+    }
+
+    public void inputMyPosts() {
         logoutCommand.execute();
     }
 }
