@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class Application {
     public static void main(String[] args) {
         Scanner defaultMenu = new Scanner(System.in);
-        Scanner userMenu = new Scanner(System.in);
         Scanner myProfileMenu = new Scanner(System.in);
         Scanner postMenu = new Scanner(System.in);
 
@@ -49,10 +48,10 @@ public class Application {
                         Display.myProfileMenu();
                         command = myProfileMenu.nextLine();
                         switch (command) {
-                            case "1" -> accountManagement.myFollowers();
-                            case "2" -> accountManagement.myFollowings();
-                            case "3" -> accountManagement.update();
-                            case "4" -> accountManagement.delete();
+                            case "1" -> accountMenu.inputMyFollowers();
+                            case "2" -> accountMenu.inputMyFollowings();
+                            case "3" -> accountMenu.inputUpdate();
+                            case "4" -> accountMenu.inputDelete();
                             case "5" -> System.out.println();
                         }
                     }
