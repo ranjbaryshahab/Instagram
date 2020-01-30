@@ -29,6 +29,6 @@ public class Post extends PersistenceEntity<Long> {
     @OneToMany
     private Set<User> likes = new HashSet<>();
 
-    @Lob
+    @ElementCollection
     private Set<String> comments;
 }

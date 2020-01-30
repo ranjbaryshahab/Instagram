@@ -1,5 +1,6 @@
 package ir.maktab.java32.projects.instagram.features.accountmanagement.commands;
 
+import ir.maktab.java32.projects.instagram.features.shared.commands.Command;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -15,6 +16,7 @@ public class AccountManagementMenuOptions {
     private Command myFollowers;
     private Command myFollowings;
     private Command myPosts;
+    private Command showAllPosts;
 
 
     public void inputCreate() {
@@ -50,14 +52,18 @@ public class AccountManagementMenuOptions {
     }
 
     public void inputMyFollowers() {
-        logoutCommand.execute();
+        myFollowers.execute();
     }
 
     public void inputMyFollowings() {
-        logoutCommand.execute();
+        myFollowings.execute();
     }
 
     public void inputMyPosts() {
-        logoutCommand.execute();
+        myPosts.execute();
+    }
+
+    public void inputShowAllPosts() {
+        showAllPosts.execute();
     }
 }

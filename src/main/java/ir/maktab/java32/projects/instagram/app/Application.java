@@ -1,6 +1,8 @@
 package ir.maktab.java32.projects.instagram.app;
 
 import ir.maktab.java32.projects.instagram.features.accountmanagement.commands.*;
+import ir.maktab.java32.projects.instagram.features.postmanagement.commands.*;
+import ir.maktab.java32.projects.instagram.features.shared.commands.Command;
 import ir.maktab.java32.projects.instagram.features.shared.service.AuthenticationService;
 import ir.maktab.java32.projects.instagram.utils.Display;
 
@@ -11,26 +13,39 @@ public class Application {
         Scanner defaultMenu = new Scanner(System.in);
         Scanner myProfileMenu = new Scanner(System.in);
         Scanner postMenu = new Scanner(System.in);
+        Scanner postsMenu = new Scanner(System.in);
 
         AccountManagement accountManagement = new AccountManagement();
-        Command createCommand = new CreateCommand(accountManagement);
+        Command createCommand = new CreateAccountCommand(accountManagement);
         Command findByUsernameCommand = new FindByUsernameCommand(accountManagement);
-        Command updateCommand = new UpdateCommand(accountManagement);
-        Command deleteCommand = new DeleteCommand(accountManagement);
+        Command updateCommand = new UpdateAccountCommand(accountManagement);
+        Command deleteCommand = new DeleteAccountCommand(accountManagement);
         Command followCommand = new FollowCommand(accountManagement);
         Command unFollowCommand = new UnFollowCommand(accountManagement);
         Command loginCommand = new LoginCommand(accountManagement);
         Command logoutCommand = new LogoutCommand(accountManagement);
-        Command myFollowersCommand = new LogoutCommand(accountManagement);
-        Command myFollowingsCommand = new LogoutCommand(accountManagement);
-        Command myPostsCommand = new LogoutCommand(accountManagement);
+        Command myFollowersCommand = new MyFollowersCommand(accountManagement);
+        Command myFollowingsCommand = new MyFollowingsCommand(accountManagement);
+        Command myPostsCommand = new MyPostsCommand(accountManagement);
+        Command showAllPostsCommand = new ShowAllPostsCommand(accountManagement);
 
         AccountManagementMenuOptions accountMenu = new AccountManagementMenuOptions(
                 createCommand, findByUsernameCommand, updateCommand, deleteCommand, followCommand, unFollowCommand, loginCommand, logoutCommand,
-                myFollowersCommand, myFollowingsCommand, myPostsCommand
+                myFollowersCommand, myFollowingsCommand, myPostsCommand,showAllPostsCommand
         );
         String command;
 
+        PostManagement postManagement = new PostManagement();
+        Command createPostCommand = new CreatePostCommand(postManagement);
+        Command deletePostCommand = new DeletePostCommand(postManagement);
+        Command updatePostCommand = new EditPostCommand(postManagement);
+        Command likePostCommand = new LikePostCommand(postManagement);
+        Command addCommentCommand = new AddCommentCommand(postManagement);
+        Command getMostLikePost = new GetMostLikePostCommand(postManagement);
+
+        PostManagementMenuOption postManagementMenuOption =
+                new PostManagementMenuOption(addCommentCommand, createPostCommand,
+                        updatePostCommand, deletePostCommand, likePostCommand, getMostLikePost);
         while (true) {
             if (AuthenticationService.getInstance().getLoginUser() == null) {
                 Display.defaultMenu();
@@ -52,25 +67,32 @@ public class Application {
                             case "2" -> accountMenu.inputMyFollowings();
                             case "3" -> accountMenu.inputUpdate();
                             case "4" -> accountMenu.inputDelete();
-                            case "5" -> System.out.println();
                         }
                     }
-                    case "2" -> {
+                    case "2"->{
+                        accountMenu.inputShowAllPosts();
+                        Display.postMenu();
+                        command = postsMenu.nextLine();
+                        switch (command){
+                            case "1"->postManagementMenuOption.inputLikePost();
+                            case "2"->postManagementMenuOption.inputAddComment();
+                        }
+                    }
+                    case "3" -> {
                         Display.myPostMenu();
                         command = postMenu.nextLine();
                         switch (command) {
-                            case "1" -> Display.myPostMenu();
-                            case "2" -> Display.myPostMenu();
-                            case "3" -> Display.myPostMenu();
-                            case "4" -> Display.myPostMenu();
-                            case "5" -> Display.myPostMenu();
-                            case "6" -> Display.myPostMenu();
+                            case "1" -> accountMenu.inputMyPosts();
+                            case "2" -> postManagementMenuOption.inputCreate();
+                            case "3" -> postManagementMenuOption.inputUpdate();
+                            case "4" -> postManagementMenuOption.inputDelete();
+                            case "5" -> postManagementMenuOption.inputGetMostPost();
                         }
                     }
-                    case "3" -> accountMenu.inputFindById();
-                    case "4" -> accountMenu.inputFollow();
-                    case "5" -> accountMenu.inputUnFollow();
-                    case "6" -> accountMenu.inputLogout();
+                    case "4" -> accountMenu.inputFindById();
+                    case "5" -> accountMenu.inputFollow();
+                    case "6" -> accountMenu.inputUnFollow();
+                    case "7" -> accountMenu.inputLogout();
                 }
             }
         }

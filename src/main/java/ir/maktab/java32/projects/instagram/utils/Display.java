@@ -13,11 +13,12 @@ public class Display {
     public static void myMenu() {
         System.out.println("""
                 1)My Profile
-                2)My Post
-                3)Search Account
-                4)Follow
-                5)UnFollow
-                6)Logout
+                2)See Following Posts
+                3)My Post
+                4)Search Account
+                5)Follow
+                6)UnFollow
+                7)Logout
                 """);
     }
 
@@ -45,8 +46,8 @@ public class Display {
     public static void postMenu() {
         System.out.println("""
                 1)Like Post
-                1)Comment To Post
-                2)Back
+                2)Comment To Post
+                3)Back
                 """);
     }
 }

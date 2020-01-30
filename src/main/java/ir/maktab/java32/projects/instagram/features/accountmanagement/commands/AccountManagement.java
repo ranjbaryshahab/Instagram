@@ -47,4 +47,7 @@ public class AccountManagement {
         new MyPostsView().view();
     }
 
+    public void showAllPosts() {
+        new ShowAllPostsByUserView().view();
+    }
 }

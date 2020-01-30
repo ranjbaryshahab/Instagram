@@ -41,6 +41,8 @@ public class User extends PersistenceEntity<Long> {
     private String password;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Post> posts = new HashSet<>();
 
     @ManyToMany

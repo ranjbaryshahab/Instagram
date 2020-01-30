@@ -29,7 +29,13 @@ public enum ExceptionMessage {
 
     USERNAME_NOT_FOUND(13, "This username not found !!!"),
 
-    ;
+    CAPTION_REQUIRED(14, "Caption is required ! Please input it !!!"),
+
+    CONTENT_REQUIRED(15, "Content is required ! Please input it !!!"),
+
+    CAPTION_LARGER(16, "Email field input value larger than allowed !!!"),
+
+    ACCOUNT_HAVE_NOT_ANY_POSTS(17, "This account have not any posts !!!");
 
     private final Integer code;
     private final String message;
